@@ -23,7 +23,11 @@
   },
   "homepage": "https://github.com/CorentinR3/Pokemon#readme",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "express": "^4.18.2",
-    "morgan": "^1.10.0"
+    "mariadb": "^3.0.2",
+    "morgan": "^1.10.0",
+    "sequelize": "^6.27.0",
+    "serve-favicon": "^2.5.0"
   }
 }
