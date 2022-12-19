@@ -18,6 +18,12 @@ app
 app.get('/', (req,res) =>{
     res.send('Hello World');
 });
+
+require('./src/routes/findAllPokemons')(app);
+require('./src/routes/findPokemonByPk')(app);
+require('./src/routes/createPokemon')(app);
+require('./src/routes/updatePokemon')(app);
+require('./src/routes/deletePokemon')(app);
  
 app.listen(port);
 console.log(`L'application est lancée sur le port ${port}`);
