@@ -4,8 +4,12 @@ module.exports = (app) => {
   app.delete('/api/pokemons/:id', (req, res) => {    
     const id = req.params.id ;
     Pokemon.findByPk(id).then(pokemon => {
+        if (pokemon === null){
+            const message = `Le pokemon avec l'identifiant suivant n'existe pas en base de donnée.`
+            return res.status(404).json({message})
+        }
         const pokemonDeleted = pokemon ;   
-    Pokemon.destroy({
+    return Pokemon.destroy({
         where: { id : pokemon.id }    
      })
     
@@ -14,5 +18,9 @@ module.exports = (app) => {
           res.json({message, data: pokemonDeleted })
         })
       })
+      .catch(error => {
+        const message = `La requête pour supprimer le pokemon a échoué. Veuillez réssayer plus tard`
+        res.status(500).json({message, data : error})
+          })
     })
 }

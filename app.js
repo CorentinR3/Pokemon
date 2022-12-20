@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const pathIcon = '/images/favicon.ico';
 const sequelize = require('./src/db/sequelize');
+const createPokemon = require('./src/routes/createPokemon');
 
 // console.log(express());
 const app = express();
@@ -24,6 +25,12 @@ require('./src/routes/findPokemonByPk')(app);
 require('./src/routes/createPokemon')(app);
 require('./src/routes/updatePokemon')(app);
 require('./src/routes/deletePokemon')(app);
- 
+
+// Gestion des erreurs 404 
+app.use(({res}) => {
+    const message = 'Impossible de trouver la ressource'
+    res.status(404).json({message})
+})
+
 app.listen(port);
 console.log(`L'application est lancée sur le port ${port}`);
