@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true
       },
 
-      userName: {
+      username: {
         type: DataTypes.STRING,
         unique : {
             msg : "Utilisateur déjà existant"
@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
 
       password: {
         type: DataTypes.STRING,
-        // crypter le mdp
       },
     })
 }

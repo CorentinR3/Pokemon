@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt')
 const {
   Sequelize,
   DataTypes
@@ -15,13 +16,18 @@ const sequelize = new Sequelize('pokedex', 'root', '', {
   logging: false
 })
 
+sequelize.authenticate()
+.then(_ =>  console.log('connexion établie'))
+.catch(error => console.error(`Connexion impossible : ${error}`))
+
 const Pokemon = PokemonModel(sequelize, DataTypes)
 const User = UserModel(sequelize, DataTypes)
 
 const initDb = () => {
-  return sequelize.sync({
+  return   sequelize.sync({
     force: true
   }).then(_ => {
+    console.log(`La base de donnée Pokedex est bien initialisée`)
     pokemons.map(pokemon => {
       Pokemon.create({
         name: pokemon.name,
@@ -29,18 +35,16 @@ const initDb = () => {
         cp: pokemon.cp,
         picture: pokemon.picture,
         types: pokemon.types
-      }).then(pokemon => console.log(pokemon.toJSON()))
+      }).then(pokemon => console.log(`Table Pokemon créée ${pokemon.toJSON()}`))
     }),
-
-    User.create({
-      username : `Sacha`,
-      password: `I<3Pika`
-    }).then(user => console.log(user.toJSON()))
-
-    
+    bcrypt.hash('I<3Pika',10)
+    .then(hash => {User.create({ username : `Sacha`, password: hash})
+    .then(user => console.log(`Table User créée ${user.toJSON()}`))
+   
     console.log('La base de donnée a bien été initialisée !')
   })
-}
+})
+} 
 
 module.exports = {
   initDb,
