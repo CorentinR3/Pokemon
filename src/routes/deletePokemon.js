@@ -4,9 +4,10 @@ const {
 const {
   ValidationError
 } = require('sequelize')
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.delete('/api/pokemons/:id', (req, res) => {
+  app.delete('/api/pokemons/:id', auth,  (req, res) => {
     const id = req.params.id;
     Pokemon.findByPk(id).then(pokemon => {
         if (pokemon === null) {

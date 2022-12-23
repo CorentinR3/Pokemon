@@ -4,9 +4,10 @@ const {
 const {
     ValidationError
 } = require('sequelize')
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-    app.get('/api/pokemon/:id', (req, res) => {
+    app.get('/api/pokemon/:id',  auth, (req, res) => {
         Pokemon.findByPk(req.params.id)
             .then(pokemons => {
                 console.log(pokemons);
