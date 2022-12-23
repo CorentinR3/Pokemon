@@ -8,7 +8,7 @@ const UserModel = require('../models/user')
 const pokemons = require('./mock-pokemon')
 let sequelize 
 
-if (processs.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production"){
 
   const sequelize = new Sequelize('rd8xtc9sg5x286b1', 'e3sbkreniv3ofdjb', 'hno6wj0e1v5qufux', {
     host: 'iu51mf0q32fkhfpl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -42,7 +42,6 @@ const User = UserModel(sequelize, DataTypes)
 const initDb = () => {
   return   sequelize.sync({
     // force: true
-    // alter: true
   }).then(_ => {
     console.log(`La base de donnée Pokedex est bien initialisée`)
     pokemons.map(pokemon => {
