@@ -38,7 +38,7 @@ const User = UserModel(sequelize, DataTypes)
 
 const initDb = () => {
   return   sequelize.sync({
-    // alter : true
+    force : true
   }).then(_ => {
     console.log(`La base de donnée Pokedex est bien initialisée`)
     pokemons.map(pokemon => {
@@ -51,7 +51,7 @@ const initDb = () => {
       }).then(pokemon => console.log(`Table Pokemon créée ${pokemon.toJSON()}`))
     }),
     bcrypt.hash('I<3Pika',10)
-    .then(hash => {User.create({ userame : `Sacha`, password: hash})
+    .then(hash => {User.create({ username : `Sacha`, password: hash})
     .then(user => console.log(`Table User créée ${user.toJSON()}`))
    
     console.log('La base de donnée a bien été initialisée !')
