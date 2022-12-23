@@ -1,5 +1,5 @@
 const express = require('express')
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const pathIcon = '/images/favicon.ico'
@@ -12,14 +12,14 @@ const port = process.env.PORT || 3000
 
 app
     .use(favicon(__dirname + pathIcon))
-    .use(morgan('dev'))
+    // .use(morgan('dev'))
     .use(bodyParser.json())
 
-    // sequelize.initDb()
+    sequelize.initDb()
 
 // Route 1 : homePage
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.json('Hello Heroku')
 })
 
 require('./src/routes/findAllPokemons')(app)
@@ -28,6 +28,7 @@ require('./src/routes/createPokemon')(app)
 require('./src/routes/updatePokemon')(app)
 require('./src/routes/deletePokemon')(app)
 require('./src/routes/login')(app)
+
 
 // Gestion des erreurs 404 
 app.use(({
