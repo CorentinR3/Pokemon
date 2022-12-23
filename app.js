@@ -15,7 +15,7 @@ app
     // .use(morgan('dev'))ss
     .use(bodyParser.json())
 
-    // sequelize.initDb()
+sequelize.initDb()
 
 // Route 1 : homePage
 app.get('/', (req, res) => {

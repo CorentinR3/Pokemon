@@ -6,15 +6,31 @@ const {
 const PokemonModel = require('../models/pokemon')
 const UserModel = require('../models/user')
 const pokemons = require('./mock-pokemon')
+let sequelize 
 
-const sequelize = new Sequelize('pokedex', 'root', '', {
-  host: 'localhost',
-  dialect: 'mariadb',
-  dialectOptions: {
-    timezone: 'Etc/GMT-2',
-  },
-  logging: false
-})
+if (processs.env.NODE_ENV === "production"){
+
+  const sequelize = new Sequelize('rd8xtc9sg5x286b1', 'e3sbkreniv3ofdjb', 'hno6wj0e1v5qufux', {
+    host: 'iu51mf0q32fkhfpl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    dialect: 'mariadb',
+    dialectOptions: {
+      timezone: 'Etc/GMT-6',
+    },
+    logging: true
+  })
+}else {
+  const sequelize = new Sequelize('pokedex', 'root', '', {
+    host: 'localhost',
+    dialect: 'mariadb',
+    dialectOptions: {
+      timezone: 'Etc/GMT-6',
+    },
+    logging: false
+  })
+  
+}
+
+
 
 sequelize.authenticate()
 .then(_ =>  console.log('connexion établie'))
@@ -25,7 +41,8 @@ const User = UserModel(sequelize, DataTypes)
 
 const initDb = () => {
   return   sequelize.sync({
-    force: true
+    // force: true
+    // alter: true
   }).then(_ => {
     console.log(`La base de donnée Pokedex est bien initialisée`)
     pokemons.map(pokemon => {
