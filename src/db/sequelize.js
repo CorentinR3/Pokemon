@@ -12,8 +12,8 @@ let sequelize
 
 
 if (process.env.NODE_ENV === 'production'){
-  sequelize = new Sequelize('rd8xtc9sg5x286b1', 'e3sbkreniv3ofdjb', 'hno6wj0e1v5qufux', {
-    host: '	iu51mf0q32fkhfpl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  sequelize = new Sequelize('c5glcbs6z6rpryo9', 'riogcfo4rlzyj3ol', 'lt334xgaa7z70urq', {
+    host: 'iu51mf0q32fkhfpl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     dialect: 'mariadb',
     dialectOptions: {
       timezone: 'Etc/GMT-6',
