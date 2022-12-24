@@ -4,25 +4,12 @@
   "description": "api rest pour pokemon",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "dev": "NODE_ENV=development nodemon app.js"
+    "start": "production node app.js",
+    "dev": "development node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CorentinR3/Pokemon.git"
-  },
-  "keywords": [
-    "pokemon",
-    "api",
-    "rest",
-    "nodejs"
-  ],
+
   "author": "Corentin RODRIGUEZ",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CorentinR3/Pokemon/issues"
-  },
-  "homepage": "https://github.com/CorentinR3/Pokemon#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
